@@ -33,7 +33,11 @@ CREATE TABLE IF NOT EXISTS SM.PERSON(
         --Персональные данные, должны заворачиваться в
         --SHA256 перед вставкой
         personFIO               BYTEA,
-        userEmail               VARCHAR(254) UNIQUE NOT NULL
+        userEmail               VARCHAR(254) UNIQUE NOT NULL,
+	--нужно выставить проверку, что пароль - это хеш
+	--вставку в ппароль следует производить с помощью
+	--функции crypt: https://x-team.com/blog/storing-secure-passwords-with-postgresql/
+	password		TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS SM.ASSET(
@@ -50,4 +54,5 @@ CREATE TABLE IF NOT EXISTS SM.ASSET(
 	--активен ли актив (продан/не продан/заморожен)
 	isActive		BOOL NOT NULL
 );
+
 
